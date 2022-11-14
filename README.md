@@ -14,7 +14,7 @@ doc_number TEXT;date TEXT;comments TEXT
 barcode_1 TEXT;amount_1 REAL  
 barcode_2 TEXT;amount_2 REAL  
 barcode_3 TEXT;amount_3 REAL  
-***  
+...  
 barcode_n TEXT;amount_n REAL  
    
 ##Samples:

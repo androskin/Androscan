@@ -4,19 +4,19 @@
 
 Exchange over LAN or FTP.
 
-###Input file:
-Goods.csv
-code TEXT;name TEXT;article TEXT;additional TEXT;unit TEXT;divisible INTEGER (0,1);barcode TEXT;price REAL;amount REAL (not used now, always 0)
+###Input file:  
+Goods.csv  
+code TEXT;name TEXT;article TEXT;additional TEXT;unit TEXT;divisible INTEGER (0,1);barcode TEXT;price REAL;amount REAL (not used now, always 0)  
 
-###Output file:
-_doc_name_.csv
-doc_number TEXT;date TEXT;comments TEXT
-barcode_1 TEXT;amount_1 REAL
-barcode_2 TEXT;amount_2 REAL
-barcode_3 TEXT;amount_3 REAL
-***
-barcode_n TEXT;amount_n REAL
-
+###Output file:  
+_doc_name_.csv  
+doc_number TEXT;date TEXT;comments TEXT  
+barcode_1 TEXT;amount_1 REAL  
+barcode_2 TEXT;amount_2 REAL  
+barcode_3 TEXT;amount_3 REAL  
+***  
+barcode_n TEXT;amount_n REAL  
+   
 ##Samples:
 
 Goods.csv

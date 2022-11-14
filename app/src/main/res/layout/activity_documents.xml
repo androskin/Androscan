@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DocumentsActivity">
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:gravity="start"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/backBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_revert"
+            app:iconTint="@color/main_buttons" />
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center_vertical"
+            android:background="@color/black"
+            android:text="@string/btn_documents"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/newDocument"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5sp"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_add"
+            app:iconTint="@color/main_buttons" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonPanel"
+        android:gravity="start"
+        android:weightSum="100"
+        android:background="@color/gray">
+
+        <ImageView
+            android:id="@+id/filterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_search"
+            android:contentDescription="@string/filter" />
+
+        <EditText
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:layout_marginStart="5sp"
+            android:backgroundTint="@color/black"
+            android:hint="@string/hint_filter"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/filterClear"
+            android:layout_width="60sp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:backgroundTint="@color/gray"
+            app:icon="@drawable/ic_search_off"
+            app:iconTint="@color/clear_filter"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/documentsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/filterLayout">
+    </ListView>
+
+</RelativeLayout>

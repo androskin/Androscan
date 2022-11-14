@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name" translatable="false">Androscan</string>
+    <string name="app_title" translatable="false">ANDROSCAN</string>
+
+    <string name="error">Error</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="zero" translatable="false">0</string>
+    <string name="plus" translatable="false">+</string>
+
+    <string name="line">Line</string>
+    <string name="message">Message</string>
+
+    <string name="btn_goods">Goods</string>
+    <string name="btn_documents">Documents</string>
+    <string name="btn_settings">Settings</string>
+    <string name="btn_exit">Exit</string>
+
+    <string name="hint_goods_details">goods details</string>
+
+    <string name="document">Document</string>
+    <string name="doc_number">Number:</string>
+    <string name="hint_doc_number">document number</string>
+    <string name="doc_date">Date:</string>
+    <string name="hint_doc_date">document date</string>
+    <string name="doc_comments">Comments:</string>
+    <string name="hint_doc_comments">add comments</string>
+    <string name="barcode">Barcode:</string>
+    <string name="hint_barcode">input barcode here</string>
+    <string name="amount">Amount</string>
+
+    <string name="language">Language:</string>
+    <string name="device_id">Device ID (for ex. AB):</string>
+    <string name="use_camera">Use the camera to scan</string>
+    <string name="barcode_settings">Weight barcode-settings:</string>
+    <string name="weight_barcode_prefix">Weight barcode prefix (for ex. 21):</string>
+    <string name="goods_code_length">Weight code length (4–6):</string>
+
+    <string name="ftp_passive_mode">Passive mode</string>
+
+    <string name="filter">Filter:</string>
+    <string name="hint_filter">filter</string>
+
+    <string name="mainTab">Main</string>
+    <string name="exchangeTab">Exchange</string>
+    <string name="save">Save</string>
+    <string name="save_settings">Save settings?</string>
+    <string name="settings_not_saved">Settings NOT saved!</string>
+    <string name="device_id_empty">Device ID is empty.</string>
+    <string name="error_weight_prefix">Weight prefix should be between 20-29.</string>
+    <string name="error_code_length">Code length should be between 4-6.</string>
+    <string name="settings_saved">Settings has been saved.</string>
+    <string name="choose_language" translatable="false">Choose Language...</string>
+    <string name="unable_to_perform_action">Unable to Perform Action!</string>
+    <string name="download">Download</string>
+    <string name="download_from_ftp">Download goods from server?</string>
+    <string name="connecting">Connecting...</string>
+    <string name="connection_to_ftp_failed">Error - Connection failed.</string>
+    <string name="error_ftp_change_directory">Error - Change ftp directory.</string>
+    <string name="downloading">Downloading...</string>
+    <string name="error_download">Error - Download from server.</string>
+    <string name="updating_database">Updating database...</string>
+    <string name="error_goods_to_list">Goods to list</string>
+    <string name="error_list_to_sql">List to SQL</string>
+    <string name="error_update_goods_list">Updating goods list!</string>
+    <string name="item_details">Item details</string>
+    <string name="error_edit_barcode">Error - Reading barcode!</string>
+    <string name="server_address">Server address:</string>
+    <string name="login_text">Login:</string>
+    <string name="password_text">Password:</string>
+    <string name="directory_text">Directory:</string>
+
+    <string name="main_doc_tab">Main</string>
+    <string name="goods_doc_tab">Goods</string>
+    <string name="scan_doc_tab">Scan</string>
+    <string name="upload">Upload</string>
+    <string name="upload_document">Upload current document on server?</string>
+    <string name="delete">Delete</string>
+    <string name="delete_document">Delete current document?</string>
+    <string name="set_count">Set count</string>
+    <string name="delete_current_barcode">Delete current barcode</string>
+    <string name="error_set_doc_details">Error - Set document details!</string>
+    <string name="error_ftp_connection">Connection to FTP failed</string>
+    <string name="creating_file">Creating file...</string>
+    <string name="document_empty">Document is empty.</string>
+    <string name="error_creating_file">Error - Creating file!</string>
+    <string name="error_upload_document">Error - Uploading document!</string>
+    <string name="uploading">Uploading...</string>
+    <string name="error_upload">Error - Upload on server!</string>
+    <string name="file_uploaded">File uploaded.</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="error_delete_document">Error - Deleting document!</string>
+    <string name="document_deleted">Document deleted.</string>
+    <string name="error_change_date">Error- Change date!</string>
+    <string name="error_show_items_details">Error - Show document item details!</string>
+    <string name="scancode">Code</string>
+    <string name="error_delete_document_item">Error - Delete document item!</string>
+    <string name="item_deleted">Item deleted.</string>
+    <string name="error_change_comments">Error - Change comments!</string>
+    <string name="error_add_goods_to_document">Error - Add goods to document!</string>
+    <string name="error_set_new_count">Error - Set new count!</string>
+    <string name="amount_updated">Amount updated.</string>
+    <string name="error_delete_item_from_document">Error - Delete item from document goods!</string>
+
+    <string name="goods_code">Code</string>
+    <string name="goods_name">Name</string>
+    <string name="goods_article">Artile</string>
+    <string name="goods_additional">Additional</string>
+    <string name="goods_unit">Unit</string>
+    <string name="goods_divisible">Divisible</string>
+    <string name="goods_barcode">Barcode</string>
+    <string name="goods_price">Price</string>
+    <string name="documents">Documents</string>
+    <string name="documents_new_document">Create new document?</string>
+    <string name="error_create_new_document">Error - Create new document!</string>
+    <string name="error_open_document">Error - Open document!</string>
+    <string name="error_read_documents_list">Error - Read documents list!</string>
+    <string name="language_en" translatable="false">EN</string>
+    <string name="unknown_goods">Unknown goods</string>
+    <string name="exchange_method">Exchange method:</string>
+    <string name="back">Back</string>
+    <string name="ftp" translatable="false">FTP</string>
+    <string name="lan" translatable="false">LAN</string>
+    <string name="error_check_lan_directory">Check LAN exchange directory.</string>
+    <string name="error_check_exchange_method">Choose exchange method in settings.</string>
+    <string name="directory_hint" translatable="false">192.168.0.10/share/</string>
+    <string name="error_could_not_find_file">Could not find goods file for downloading.</string>
+
+    <string name="lan_directory_text">Directory (smb://):</string>
+    <string name="exit">Exit</string>
+    <string name="exit_question">Quit the program?</string>
+    <string name="error_camera_permission_denied">Camera permission denied.</string>
+    <string name="about">About</string>
+</resources>

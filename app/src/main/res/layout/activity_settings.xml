@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:gravity="start"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_revert"
+            app:iconTint="@color/main_buttons"
+            android:contentDescription="@string/back"/>
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center_vertical"
+            android:background="@color/black"
+            android:text="@string/btn_settings"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnSaveSettings"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5sp"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_save"
+            app:iconTint="@color/main_buttons"
+            android:contentDescription="@string/save"/>
+
+        <Button
+            android:id="@+id/btnAbout"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5sp"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_info_details"
+            app:iconTint="@color/main_buttons"
+            android:contentDescription="@string/about"/>
+    </LinearLayout>
+
+    <TabHost
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonPanel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/tabs_background"/>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/exchangeTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/exchangeMethodText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange_method"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupExchangeMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/exchangeMethodText"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonLan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lan" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonFtp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ftp"
+                            android:layout_marginStart="10dp"/>
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/lanLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/radioGroupExchangeMethod">
+
+                        <TextView
+                            android:id="@+id/lanExchangeMethodText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lan"
+                            android:textColor="@color/green"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:id="@+id/lanDirectoryLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lanExchangeMethodText"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/lanDirectoryText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/lan_directory_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/lanDirectory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="text"
+                                android:hint="@string/directory_hint"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lanUserLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lanDirectoryLayout"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/lanUserText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/login_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/lanUser"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lanPasswordLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lanUserLayout"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/lanPasswordText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/password_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/lanPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="textPassword"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/ftpLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lanLayout">
+
+                        <TextView
+                            android:id="@+id/ftpExchangeMethodText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ftp"
+                            android:textColor="@color/green"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:id="@+id/ftpAddressLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ftpExchangeMethodText"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/ftpAddressText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/server_address"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/ftpAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ftpUserLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ftpAddressLayout"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/ftpUserText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/login_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/ftpUser"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ftpPasswordLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ftpUserLayout"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/ftpPasswordText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/password_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/ftpPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="textPassword"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ftpDirectoryLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ftpPasswordLayout"
+                            android:gravity="start">
+
+                            <TextView
+                                android:id="@+id/ftpDirectoryText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/directory_text"
+                                android:textColor="@color/black"/>
+
+                            <EditText
+                                android:id="@+id/ftpDirectory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/black"
+                                android:inputType="text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ftpPassiveModeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ftpDirectoryLayout">
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/ftpPassiveMode"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ftp_passive_mode"
+                                android:textColor="@color/black"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/mainTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/languageLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/languageText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:text="@string/language"/>
+
+                        <Button
+                            android:id="@+id/btnChooseLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/language_en"
+                            android:textColor="@color/black"
+                            android:backgroundTint="@color/blue"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/deviceIdLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/languageLayout"
+                        android:gravity="start"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/deviceIdText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:text="@string/device_id"/>
+
+                        <EditText
+                            android:id="@+id/deviceId"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLength="2"
+                            android:inputType="text"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/useCameraLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/deviceIdLayout"
+                        android:gravity="start">
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/useCamera"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/use_camera"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/barcodeSettingsText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/useCameraLayout"
+                        android:text="@string/barcode_settings"
+                        android:textColor="@color/settings_1"/>
+
+                    <LinearLayout
+                        android:id="@+id/weightPrefixLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/barcodeSettingsText"
+                        android:gravity="start"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/weightPrefixText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:text="@string/weight_barcode_prefix"
+                            android:gravity="center_vertical"/>
+
+                        <EditText
+                            android:id="@+id/weightPrefix"
+                            android:layout_width="40sp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:backgroundTint="@color/black"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/codeLengthLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/weightPrefixLayout"
+                        android:gravity="start"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/codeLengthText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:text="@string/goods_code_length"/>
+
+                        <EditText
+                            android:id="@+id/codeLength"
+                            android:layout_width="40sp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="1"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</RelativeLayout>

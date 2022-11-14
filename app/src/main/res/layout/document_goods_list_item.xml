@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/deleteItem"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dip"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:text="Item name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_alignStart="@+id/name"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:text="Article"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/additional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_alignBottom="@+id/article"
+            android:layout_alignParentRight="true"
+            android:gravity="end"
+            android:text="Additional"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/article"
+            android:layout_alignStart="@+id/name"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:text="Barcode"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/additional"
+            android:layout_alignBottom="@+id/barcode"
+            android:layout_alignParentRight="true"
+            android:gravity="end"
+            android:text="Amount"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/deleteItem"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10sp"
+        app:backgroundTint="@color/white"
+        app:icon="@android:drawable/ic_delete"
+        app:iconTint="@color/red" />
+
+</RelativeLayout>
+
+
+

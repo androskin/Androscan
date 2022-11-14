@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoodsActivity">
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:gravity="start"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/backBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_revert"
+            app:iconTint="@color/main_buttons" />
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center_vertical"
+            android:background="@color/black"
+            android:text="@string/btn_goods"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/downloadGoods"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5sp"
+            app:backgroundTint="@color/main_buttons_background"
+            app:icon="@android:drawable/ic_menu_rotate"
+            app:iconTint="@color/main_buttons" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalCountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filterLayout"
+        android:layout_gravity="bottom"
+        android:background="@color/gray"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/totalCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:text="@string/zero"
+            android:textColor="@color/blue" />
+
+        <ImageView
+            android:id="@+id/totalImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/filter"
+            android:src="@drawable/ic_sum_blue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonPanel"
+        android:background="@color/gray"
+        android:gravity="start"
+        android:weightSum="100">
+
+        <ImageView
+            android:id="@+id/filterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/filter"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5sp"
+            android:layout_weight="100"
+            android:backgroundTint="@color/black"
+            android:hint="@string/hint_filter"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/filterClear"
+            android:layout_width="60sp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:backgroundTint="@color/gray"
+            app:icon="@drawable/ic_search_off"
+            app:iconTint="@color/clear_filter" />
+
+        <ImageButton
+            android:id="@+id/filterScan"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5sp"
+            android:background="@drawable/ic_camera"
+            android:scaleType="center" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/goods_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalCountLayout">
+    </ListView>
+
+</RelativeLayout>

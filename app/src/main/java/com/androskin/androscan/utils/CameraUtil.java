@@ -18,4 +18,8 @@ public class CameraUtil {
     public static void askCameraPermission(Activity context) {
         ActivityCompat.requestPermissions(context, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
     }
+
+    public static boolean hasFlash(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    }
 }

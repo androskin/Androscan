@@ -347,6 +347,28 @@ public class SQLite extends SQLiteOpenHelper {
         return result;
     }
 
+    public String getGoodsBarcode(long id) {
+        String result = "";
+
+        if (!(id <= 0)) {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            try (Cursor cursor = db.rawQuery("SELECT code, barcode FROM goods WHERE goods._id = '"+id+"'", null)) {
+                if (cursor.moveToNext()) {
+                    result = cursor.getString(1);
+
+                    if (result.equals("")) {
+                        result = cursor.getString(0);
+                    }
+
+                    return result;
+                }
+            }
+        }
+
+        return result;
+    }
+
     @SuppressLint("DefaultLocale")
     public String getGoodsDetailsString(Context context, Goods goods) {
         String result = context.getString(R.string.unknown_goods);

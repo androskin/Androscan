@@ -111,4 +111,5 @@
     <string name="goods_article">Артикул</string>
     <string name="goods_additional">Характеристики</string>
     <string name="about">Про програму</string>
+    <string name="select_item">Виберіть товар зі списку</string>
 </resources>

@@ -20,7 +20,7 @@
             android:layout_width="50sp"
             android:layout_height="match_parent"
             app:backgroundTint="@color/main_buttons_background"
-            app:icon="@android:drawable/ic_menu_revert"
+            app:icon="@android:drawable/ic_media_rew"
             app:iconTint="@color/main_buttons" />
 
         <TextView

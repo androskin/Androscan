@@ -59,12 +59,14 @@ public class DocumentGoodsListItemAdapter extends BaseAdapter implements ListAda
         }
 
         RelativeLayout itemLayout = view.findViewById(R.id.itemLayout);
-        itemLayout.setOnClickListener(new View.OnClickListener() {
+        itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 Log.d(TAG, "onItemClick");
                 currentPosition = position;
                 fragmentManager.setFragmentResult(EnumDialogValues.DOCUMENT_ITEM_DETAILS.toString(), new Bundle());
+
+                return true;
             }
         });
 

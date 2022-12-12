@@ -1,13 +1,19 @@
 package com.androskin.androscan;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,10 +67,12 @@ import java.util.Map;
 
 import jcifs.smb.SmbException;
 
-public class DocumentActivity extends AppCompatActivity implements View.OnClickListener {
+public class DocumentActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
     private final static String TAG = "GA_DocumentActivity";
 
     DocumentGoodsListItemAdapter goodsListAdapter;
+
+    ActivityResultLauncher<Intent> goodsActivityResultLauncher;
 
     TextView headerTitle;
 
@@ -88,7 +96,9 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
     private boolean isCameraOpen;
     private DecoratedBarcodeView barcodeScanner;
     private BeepManager beepManager;
+    private boolean switchFlashlight = false;
 
+    private ImageButton addBtn;
     private ImageButton scanBtn;
     private Button setBtn, deleteBtn;
     private EditText barcode, amount, count;
@@ -199,6 +209,21 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
         //hidden keyboard on start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        goodsActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null) {
+                                long id = data.getLongExtra("item_id", 0);
+                                addItemToBase(id, "");
+                            }
+                        }
+                    }
+                });
+
         ftpClient = new FtpClientUtil();
 
         date = new DatePickerDialog.OnDateSetListener() {
@@ -290,8 +315,12 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
 
         beepManager = new BeepManager(this);
 
+        addBtn = findViewById(R.id.addBtn);
+        addBtn.setOnClickListener(this);
+
         scanBtn = findViewById(R.id.scanBtn);
         scanBtn.setOnClickListener(this);
+        scanBtn.setOnLongClickListener(this);
 
         barcode = findViewById(R.id.barcode);
         barcode.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -422,6 +451,11 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
                 new DatePickerDialog(DocumentActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
 
+            case R.id.addBtn:
+                addGoodsFromList();
+
+                break;
+
             case R.id.scanBtn:
                 if (barcode.getText().toString().trim().equals("") && settings.getUseCamera()) {
                     if(isCameraOpen) stopCamera();
@@ -471,6 +505,25 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()) {
+            case R.id.scanBtn:
+                if (CameraUtil.hasFlash(this)) {
+                    if (switchFlashlight) {
+                        barcodeScanner.setTorchOff();
+                        switchFlashlight = false;
+                    } else {
+                        barcodeScanner.setTorchOn();
+                        switchFlashlight = true;
+                    }
+                }
+                break;
+        }
+
+        return true;
     }
 
     private void toPreviousActivity() {
@@ -842,6 +895,13 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void addGoodsFromList() {
+        Intent goodsIntent = new Intent(this, GoodsActivity.class);
+        goodsIntent.putExtra("select", true);
+
+        goodsActivityResultLauncher.launch(goodsIntent);
+    }
+
     private void editBarcode() {
         String locBarcode = barcode.getText().toString();
         locBarcode = locBarcode.replace("\n", "");
@@ -853,27 +913,45 @@ public class DocumentActivity extends AppCompatActivity implements View.OnClickL
 
         count.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
+        Log.d(TAG, "Reading barcode = "+locBarcode);
+
+        addItemToBase(0, locBarcode);
+    }
+
+    private void addItemToBase(long id, String locBarcode) {
+
+        Log.d(TAG, "addIdToBase(): Goods id = " + id);
+
         String curDocId = docId.getText().toString();
-        long id;
 
         currentDocumentGoodsId = 0;
 
         double curAmount;
         double locAmount = 1;
 
-        Log.d(TAG, "Reading barcode = "+locBarcode);
-
-        currentBarcode.setText(String.format("%s %s", getString(R.string.barcode), locBarcode));
+        currentBarcode.setText("");
 
         try (SQLite sqLite = new SQLite(getApplicationContext())) {
+
+            if (id > 0) {
+                locBarcode = sqLite.getGoodsBarcode(id);
+            } else if (!locBarcode.equals("")) {
+                id = sqLite.getGoodsId(locBarcode);
+            } else {
+                String title = getString(R.string.error);
+                String message = String.format(getString(R.string.error_add_goods_to_document) + "\nGoods id = %s\nGoods barcode = %s", id, locBarcode);
+                DialogMessage.showMessage(getSupportFragmentManager(), title, message);
+                return;
+            }
+            Log.d(TAG, "Goods id = " + id);
+            Log.d(TAG, "Goods barcode = " + locBarcode);
+
+            currentBarcode.setText(locBarcode);
 
             WeightBarcodeUtil weightBarcodeUtil = new WeightBarcodeUtil(locBarcode, locAmount);
             weightBarcodeUtil.checkWeightBarcode();
             locBarcode = weightBarcodeUtil.getBarcode();
             locAmount = weightBarcodeUtil.getWeight();
-
-            id = sqLite.getGoodsId(locBarcode);
-            Log.d(TAG, "Goods id = " + id);
 
             Goods goods = sqLite.getGoodsDetails(id);
 

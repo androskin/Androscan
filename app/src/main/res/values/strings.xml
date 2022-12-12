@@ -19,6 +19,7 @@
     <string name="btn_exit">Exit</string>
 
     <string name="hint_goods_details">goods details</string>
+    <string name="select_item">Select item from list</string>
 
     <string name="document">Document</string>
     <string name="doc_number">Number:</string>

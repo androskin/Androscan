@@ -13,7 +13,10 @@
     <color name="red">#E91E63</color>
     <color name="yellow">#FFF59D</color>
 
-    <color name="main_buttons">#1976D2</color>
+    <color name="main_menu_buttons">#1976D2</color>
+    <color name="main_menu_buttons_background">#EDECE3</color>
+
+    <color name="main_buttons">#80D8FF</color>
     <color name="main_buttons_background">#FF000000</color>
 
     <color name="tabs_background">#DCDCDA</color>

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -49,6 +50,8 @@ import jcifs.smb.SmbException;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener {
     private final static String TAG = "GA_GoodsActivity";
+
+    private boolean openForSelection;
 
     private ListView goodsList;
     private Button backBtn;
@@ -146,6 +149,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         //hidden keyboard on start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        openForSelection = false;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            openForSelection = bundle.getBoolean("select");
+        }
+
         ftpClient = new FtpClientUtil();
 
         filter = findViewById(R.id.filter);
@@ -181,13 +190,22 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         }
 
         goodsList = findViewById(R.id.goods_list);
-        goodsList.setOnItemClickListener((adapterView, view, position, id) -> showItemDetails(id));
+        goodsList.setOnItemClickListener((adapterView, view, position, id) -> selectItem(id));
+        goodsList.setOnItemLongClickListener((adapterView, view, position, id) -> showItemDetails(id));
 
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(this);
 
         downloadGoods = findViewById(R.id.downloadGoods);
         downloadGoods.setOnClickListener(this);
+
+        TextView headerTitle = findViewById(R.id.header_title);
+        if (openForSelection) {
+            headerTitle.setText(getString(R.string.select_item));
+            downloadGoods.setVisibility(View.GONE);
+        } else {
+            headerTitle.setText(getString(R.string.btn_goods));
+        }
 
         totalCount = findViewById(R.id.totalCount);
     }
@@ -508,7 +526,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         updateTotalCount();
     }
 
-    private void showItemDetails(long id) {
+    private void selectItem(long id) {
+        if (openForSelection) {
+            Intent intent = new Intent();
+            intent.putExtra("item_id", id);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    private boolean showItemDetails(long id) {
         try (SQLite sqLite = new SQLite(getApplicationContext())) {
             Goods goods = sqLite.getGoodsDetails(id);
             String msg = sqLite.getGoodsDetailsString(this, goods);
@@ -518,6 +545,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             String msg = getString(R.string.error_edit_barcode)+"\n"+e.getMessage();
             DialogMessage.showMessage(getSupportFragmentManager(), title, msg);
         }
+
+        return true;
     }
 
     private void updateTotalCount() {

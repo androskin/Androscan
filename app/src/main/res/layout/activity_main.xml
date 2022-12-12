@@ -47,9 +47,9 @@
             android:text="@string/btn_goods"
             android:textColor="@color/green"
             android:textSize="25sp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/main_menu_buttons_background"
             app:icon="@android:drawable/ic_menu_mylocation"
-            app:iconTint="@color/main_buttons" />
+            app:iconTint="@color/main_menu_buttons" />
 
         <Button
             android:id="@+id/btnDocuments"
@@ -59,9 +59,9 @@
             android:text="@string/btn_documents"
             android:textColor="@color/green"
             android:textSize="25sp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/main_menu_buttons_background"
             app:icon="@android:drawable/ic_menu_agenda"
-            app:iconTint="@color/main_buttons" />
+            app:iconTint="@color/main_menu_buttons" />
 
         <Button
             android:id="@+id/btnSettings"
@@ -71,9 +71,9 @@
             android:text="@string/btn_settings"
             android:textColor="@color/blue"
             android:textSize="25sp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/main_menu_buttons_background"
             app:icon="@android:drawable/ic_menu_manage"
-            app:iconTint="@color/main_buttons" />
+            app:iconTint="@color/main_menu_buttons" />
 
         <Button
             android:id="@+id/btnExit"
@@ -83,9 +83,9 @@
             android:text="@string/btn_exit"
             android:textColor="@color/red"
             android:textSize="25sp"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/main_menu_buttons_background"
             app:icon="@android:drawable/ic_lock_power_off"
-            app:iconTint="@color/main_buttons" />
+            app:iconTint="@color/main_menu_buttons" />
 
     </RelativeLayout>
 </RelativeLayout>
